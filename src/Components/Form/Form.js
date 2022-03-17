@@ -7,9 +7,21 @@ function Form() {
                            password: ""
                          };
     const [formValues, setFormValues] = useState(intialValues);
-  return (
+    console.log(formValues);
+
+    const handleChange = (e) => { 
+        console.log(e.target.value);
+        const { name, value } = e.target;
+        setFormValues({...formValues, [name]:value})
+    }
+
+    const handleSubmit = (e) => {
+        console.log(e.target.value);
+    }
+ 
+    return (
     <div className="container-form">
-        <form className='form'>
+        <form className='form' onSubmit={handleSubmit}>
             <div className="form-title">Connexion</div>
             <div className="form-tited"></div>
             <div className="form-group">
@@ -18,6 +30,8 @@ function Form() {
                   type="text" 
                   name="username" 
                   id="username" 
+                  value={formValues.username}
+                  onChange={handleChange}
                 />
             </div>
 
@@ -27,6 +41,8 @@ function Form() {
                   type="email" 
                   name="email" 
                   id="email" 
+                  value={formValues.email}
+                  onChange={handleChange}
                 />
             </div>
 
@@ -36,6 +52,8 @@ function Form() {
                   type="password" 
                   name="password" 
                   id="password" 
+                  value={formValues.password}
+                  onChange={handleChange}
                 />
             </div>
             <button className="btn-sign-up">
